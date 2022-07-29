@@ -30,6 +30,12 @@ spec:
         - name: strapi-bootstrap
           configMap:
             name: strapi-bootstrap
+        - name: nginx-config-template
+          configMap:
+            name: nginx-config-template
+        - name: cms-data
+          configMap:
+            name: cms-data
       containers:
         - name: strapi
           image: strapi:latest
@@ -63,5 +69,11 @@ spec:
               name: strapi-config
             - mountPath: /stash
               name: strapi-bootstrap
+            - mountPath: /etc/nginx/templates
+              name: nginx-config-template
+              readOnly: true
+            - mountPath: /etc/static/config
+              name: cms-data
+              readOnly: true
           resources: { }
 status: { }
